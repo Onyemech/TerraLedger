@@ -1,0 +1,11 @@
+Django
+
+*.pyc pycache/ *.pyo *.pyd .Python venv/ *.sqlite3 *.env
+
+Move
+
+build/ *.lock
+
+General
+
+*.log .DS_Store *.swp

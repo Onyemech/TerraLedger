@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_NAME=land_registry_db
+      - DB_USER=land_user
+      - DB_PASSWORD=land_password
+      - DB_HOST=db
+      - DB_PORT=3306
+      - SUI_PACKAGE_ID=${SUI_PACKAGE_ID}
+      - SUI_REGISTRY_OBJECT_ID=${SUI_REGISTRY_OBJECT_ID}
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=land_registry_db
+      - MYSQL_USER=land_user
+      - MYSQL_PASSWORD=land_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
